@@ -1,0 +1,30 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/ball.png", alt="pokeball logo")
+    .navlink
+      a(href="/login") Login
+    .navlink
+      a(href="/signup") Sign up
+  section#title
+    h3.loginmsg Pok&eacute; Friends
+    p.info Collect your friends and your friends will collect you! 
+    p.info How many can you collect?
+  section#login
+    form#loginForm(class="mainForm", name="loginForm", action="/login", method="POST")
+      label(for="username") Username: 
+      input#user(type="text", name="username", placeholder="username")
+      label(for="pass") Password: 
+      input#pass(type="password", name="pass", placeholder="password")
+      input(type="hidden",name="_csrf",value="#{csrfToken}")
+      a#loginSubmit(class="formSubmit", href="#") Sign in
+  #digMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage Wrong username or password
+    img#dig(src="assets/img/dig.gif", alt="diglett error msg")
+block scripts
+    script(src="/assets/client.js")

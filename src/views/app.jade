@@ -1,0 +1,49 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/ball.png", alt="Pokeball")
+    .navlink
+      a(href="/logout") Log out
+  div.main 
+    div.content
+      div.search
+        section#searchBar
+        form#bioForm(class="bioForm", name="bioForm", action="/maker", method="POST")
+          label(for="name") Name: 
+          input#userName(type="text", name="name", placeholder="User name")
+          input(type="hidden",name="_csrf",value="#{csrfToken}")
+          a#makeSearchSubmit(class="makeBioSubmit", href="#") Find
+        section#searchResult
+        section#statistics
+      div.collection
+        section#bios
+          if !bios || bios.length == 0
+              div.bio
+                  h3.emptyBio No Entries Yet
+          else
+              each val in bios
+                  div.bio
+                      img(class="domoFace", src="/assets/img/domoface.jpeg", alt="domo face")
+                      h3.bioFirst First: #{val.first}
+                      h3.bioLast Last: #{val.last}
+                      h3.bioAge Age: #{val.age}
+                      h3.bioHeight Height: #{val.height}
+                      h3.bioWeight Weight: #{val.weight}
+                      h3.bioGender Gender: #{val.gender}
+                      h3.bioLocation Location: #{val.location}
+                      form#bioDelForm( name ="biodelForm" action = "/deleter" method="POST")
+                        input#bioDelFirst(type="text", name="delFirst", value="#{val.first}")
+                        input#bioDelLast(type="text", name="delLast", value="#{val.last}")
+                        input#bioDelAge(type="text", name="delAge", value="#{val.age}")
+                        input(type="hidden",name="_csrf",value="#{csrfToken}")
+                        a#doBioDelete(class="makeDomoSubmit", href="#") Delete
+  section#digMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#dig(src="assets/img/dig.gif", alt="diglett")
+block scripts
+        script(src="/assets/maker.js")

@@ -1,0 +1,39 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/ball.png", alt="face logo")
+    .navlink
+      a(href="/login") Login
+    .navlink
+      a(href="/signup") Sign up
+  section#title
+    h3.accountmsg Create your Bio!
+    p.info Add your basic information to create your Bio and add it your Dex then start collecting!
+  section#acctMaker
+    form#acctForm(class="signForm", name="acctForm", action="/maker", method="POST")
+      label(for="first") First Name: 
+      input#first(type="text", name="first", placeholder="first name")
+      label(for="last") Last Name: 
+      input#last(type="text", name="last", placeholder="last name") 
+      label(for="age") Age in years: 
+      input#age(type="text", name="age", placeholder="# of years")
+      label(for="height") Height in cm:
+      input#height(type="text", name="height", placeholder="# of cm")
+      label(for="weight") Weight in kg: 
+      input#weight(type="text", name="weight", placeholder="# of kgs")
+      label(for="gender") Gender: 
+      input#gender(type="text", name="gender", placeholder="Male/Female/etc.")
+      label(for="region") Region: 
+      input#region(type="text", name="location", placeholder="State/City(ex. New York).")
+      input(type="hidden",name="_csrf",value="#{csrfToken}")
+      a#makeBioSubmit(class="formSubmit", href="#") Create Bio     
+  #digMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#dig(src="assets/img/dig.gif", alt="diglett error")
+block scripts
+        script(src="/assets/maker.js")

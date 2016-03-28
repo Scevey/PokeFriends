@@ -1,0 +1,405 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+	background-color: #f0f0f0;
+}
+@font-face {
+    font-family: 'pokemon_solidnormal';
+    src: url('pokemon_solid-webfont.eot');
+    src: url('pokemon_solid-webfont.eot?#iefix') format('embedded-opentype'),
+         url('pokemon_solid-webfont.woff2') format('woff2'),
+         url('pokemon_solid-webfont.woff') format('woff'),
+         url('pokemon_solid-webfont.ttf') format('truetype'),
+         url('pokemon_solid-webfont.svg#pokemon_solidnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+#logo {
+    height: 40px;
+    width: 40;
+    padding-top: 5px;
+    float:left;
+    border-radius: 8px;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    background-color: #ee1515;
+}
+
+nav:nth-child(1) {
+    padding-left: 25px;
+}
+
+.navlink {
+    padding: 5px;
+    padding-top: 12px;
+    padding-left: 20px;
+    color: white;
+	font-family: 'pokemon_solidnormal';
+    font-size: 1.3em;
+    float: left;
+}
+
+.navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #ee1515;
+    transition: background-color 0.4s ease;
+}
+
+.navlink a:hover {
+    transition: background-color 0.8s ease;
+    background-color: #F06560;
+}
+div.search{
+	width: 30%;
+	padding-left: 2%;
+	padding-top: 2%;
+	float: left;
+}
+div.collection{
+	float:right;
+	width: 60%;
+	margin-top: 2%;
+	padding-right: 2%;
+}
+.bioForm {
+    border: 2px solid #338acc;
+    height: 35px;
+    width: 390px;
+    margin-top:2%;
+	padding-left: 2%;
+	margin-left: 2%;
+    padding-top:10px;
+    background-color: #55acee;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+#searchResult{
+	width: 400px;
+	height: 45%;
+	margin-left: 2%;
+	background-color:blue;
+}
+#statistics{
+	margin-left: 2%;
+	margin-top: 3%;
+	width: 400px;
+	height: 25%;
+	background-color:blue;
+}
+.bioForm label {
+    display: inline-block;
+    width: 75px;
+    margin-left: 10px;
+    font-size: 1.2em;
+    float: left;
+    color: white;
+}
+
+.bioForm input[type=text] {
+    float:left;
+}
+
+.makeBioSubmit {
+    transition: background-color 0.4s ease;
+    display: inline;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 90px;
+    background-color: #55acee;
+    border-radius: 2px;
+    padding: 3px 0px;
+    color: black;
+    text-decoration: none;
+    margin-left: 45px;
+    padding: 5px;
+}
+
+.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+    color: white;
+}
+
+.makeBioSubmit:hover {
+    transition: background-color 0.4s ease;
+    background-color: #338acc;
+}
+
+.mainForm {
+    height: 300px;
+    width: 400px;
+    padding-top: 20px;
+    font-size: 1.2em;
+    margin: 0 auto;
+}
+.mainForm input {
+    width: 250px;
+}
+.signForm {
+    height: 400px;
+    width: 650px;
+    padding-top: 10px;
+    font-size: 1.2em;
+    margin: 0 auto;
+}
+.signForm label {
+    display: inline-block;
+    width: 200px;
+	padding-top: 10px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 1.2em;
+}
+p.info{
+	text-align: center;
+	font-size: 18pt;
+	color: #ee1515;
+}
+h3.loginmsg {
+	font-size: 5em;
+	font-family: 'pokemon_solidnormal';
+    text-align: center;
+	margin-top: 40px;
+	margin-bottom: 40px;
+   -webkit-text-stroke: 1px #ee1515;
+   letter-spacing: 0.15em;
+   color: rgb(254,203,5);
+   text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+h3.accountmsg {
+	font-size: 4em;
+	font-family: 'pokemon_solidnormal';
+    text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-text-stroke: 1px #ee1515;
+	letter-spacing: 0.15em;
+	color: rgb(254,203,5);
+	text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+.mainForm label {
+    display: inline-block;
+    width: 100px;
+	padding-top: 10px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 1.2em;
+}
+div.main{
+	padding-top: 2%;
+	width: 86%;
+	height: 80%;
+	margin-left: 7%;
+	margin-right:7%;
+	background-color:yellow;
+}
+div.content{
+	width: 90%;
+	height: 95%;
+	margin-bottom: 3%;
+	margin-left:5%;
+	margin-right:5%;
+	background-color:green;
+}
+p.info{
+	font-weight: bold;
+}
+.formSubmit {
+    transition: background-color 0.4s ease;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 90px;
+    background-color: #ee1515;
+    border-radius: 2px;
+    padding: 3px 0px;
+    color: black;
+    text-decoration: none;
+}
+
+.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
+    color: white;
+}
+
+.formSubmit:hover {
+    transition: background-color 0.4s ease;
+    background-color: #F06560;
+}
+
+#user, #pass, #pass2 ,#height,#weight,#gender,#age,#region,#first,#last{
+    text-align: center;
+    font-size: 1.1em;
+    width: 280px;
+    border-radius: 6px;
+}
+
+#user:focus, #pass:focus, #pass2:focus {
+    outline: none;
+    box-shadow: 0px 0px 1px 1px #55acee;
+}
+
+#digMessage {
+    display:none;
+    top: 50px;
+    width: 250px;
+    height: 650px;
+    position: absolute;
+    z-index: 200;
+    right: 0px;
+    overflow: hidden;
+}
+
+#digMessage h3 {
+    width: 200px;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+}
+
+#speech {
+    height: 120px;
+    width: 250px;
+    z-index:300;
+}
+
+#errorMessage {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: red;
+    font-style: italic;
+}
+
+#dig {
+    z-index: 225;
+    margin-top: -150;
+    margin-left: 35px;
+    height: 450px;
+    width: 300px;
+    -ms-transform: rotate(270deg);
+    -webkit-transform: rotate(270deg); 
+    transform: rotate(270deg);
+	
+}
+
+#bios {
+    width: 80%;
+	max-height:90%;
+    min-width: 400px;
+    border: 2px solid #55acee;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 2%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.bio {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: 2px solid #55acee;
+    border-radius: 4px;
+    background-color: #55acee;
+    padding: 10px;
+    min-height:60px;
+    overflow: hidden;
+}
+
+.bio:hover {
+    transition: border-color 0.2s ease-out;
+    border-color: rgba(255,255,255, 0.8);
+    transition: background-color 2.6s ease-out;
+    background-color: #66bfff;
+}
+
+img.domoFace {
+    margin-left: 25px;
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+    border-radius: 4px;
+    margin-top:10px;
+    float:left;
+}
+
+h3.emptyBio{
+    width: 400px;
+    font-size: 1.5em;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 18px;
+}
+
+h3.bioFirst {
+    float:left;
+    width: 200px;
+    font-weight: bold;
+    padding-left: 65px;
+    font-size: 1.5em;
+}
+h3.bioLast {
+    float:right;
+    text-align: left;
+    width: 100px;
+    font-weight: bold;
+    padding-right: 40px;
+    font-size: 1.5em;
+}
+h3.bioAge {
+    float:right;
+    text-align: left;
+    width: 100px;
+    font-weight: bold;
+    margin-right: 200px;
+    font-size: 1.5em;
+}
+#bioDelAge{
+	display: none;
+}
+#bioDelLast{
+	display: none;
+}
+#bioDelFirst{
+	display: none;
+}
+#bioDelForm{
+	display:inline;
+	float:right;
+	margin-top: -50px;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+#doBioDel{
+	display:inline;
+	margin-right: 40px;
+}
+
+
+.bio:first-child {
+    margin-top: 10px;
+}
+
+.bio:last-child {
+    margin-bottom:10px;
+}
