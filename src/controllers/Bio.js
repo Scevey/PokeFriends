@@ -57,21 +57,34 @@ var makeBio= function(req,res){
 };
 var deleteBio = function(req,res){
 	var  bioData = {
-		first: req.body.first,
-    last: req.body.last,
-		age: req.body.age,
+		first: req.body.delFirst,
+		last: req.body.delLast,
+		age: req.body.delAge,
+		id: req.body.delID,
 		owner: req.session.account._id
 	};
 	
-    Bio.BioModel.findOneAndRemove(bioData.name, function(err, doc) {
+    Bio.BioModel.findByID(req.body.delID, function(err, doc) {
         //errs, handle them
         if(err) {
-            return res.json({err:"woops"}); //if error, return it            
+            return res.json({err:err}); //if error, return it            
         }
         
-		res.json({redirect: '/main'});
+        //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
+        if(!doc) {
+            return res.json({error: "No Domos found"});
+        }
+		doc.remove(function(err) {
+			if(err) {
+				return res.json({err:err}); //if error, return it
+			}
+        
+        //return success
+			res.json({redirect: '/maker'});
+		});
+
     });
-};
+};	
 module.exports.mainPage = mainPage;
 module.exports.acctPage = acctPage;
 module.exports.make = makeBio;

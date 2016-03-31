@@ -61,15 +61,16 @@ nav:nth-child(1) {
 }
 div.search{
 	width: 30%;
-	padding-left: 2%;
+	padding-left: 7%;
 	padding-top: 2%;
 	float: left;
 }
 div.collection{
 	float:right;
-	width: 60%;
+	min-width: 700px;
+	width: 700px;
 	margin-top: 2%;
-	padding-right: 2%;
+	padding-right: 4%;
 }
 .bioForm {
     border: 2px solid #338acc;
@@ -205,15 +206,17 @@ h3.accountmsg {
 }
 div.main{
 	padding-top: 2%;
-	width: 86%;
+	width: 76%;
+	min-width: 1400px;
 	height: 80%;
-	margin-left: 7%;
-	margin-right:7%;
+	margin-left: 12%;
+	margin-right:12%;
 	background-color:yellow;
 }
 div.content{
 	width: 90%;
 	height: 95%;
+	min-width: 1200px;
 	margin-bottom: 3%;
 	margin-left:5%;
 	margin-right:5%;
@@ -307,7 +310,8 @@ p.info{
     min-width: 400px;
     border: 2px solid #55acee;
     border-radius: 4px;
-    margin: 0 auto;
+    margin-right: 10%;
+	margin-left: 10%;
     margin-top: 2%;
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -333,7 +337,7 @@ p.info{
     background-color: #66bfff;
 }
 
-img.domoFace {
+img.pikaFace {
     margin-left: 25px;
     margin-right: 10px;
     height: 50px;
@@ -342,7 +346,9 @@ img.domoFace {
     margin-top:10px;
     float:left;
 }
-
+div.header{
+	height: 70px;
+}
 h3.emptyBio{
     width: 400px;
     font-size: 1.5em;
@@ -353,26 +359,66 @@ h3.emptyBio{
 
 h3.bioFirst {
     float:left;
-    width: 200px;
+    width: 150px;
     font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
+    padding-left: 40px;
+    font-size: 1.2em;
+}
+h3.bioNumber {
+    float:right;
+    text-align: left;
+    width: 50px;
+    font-weight: bold;
+    padding-right: 20px;
+    font-size: 1.2em;
+}
+h3.bioAge {
+    float:left;
+    text-align: left;
+    width: 180px;
+	margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+h3.bioGender {
+    float:right;
+    text-align: left;
+	margin-bottom: 0px;
+    width: 180px;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 h3.bioLast {
     float:right;
     text-align: left;
-    width: 100px;
+    width: 150px;
     font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
-h3.bioAge {
+h3.bioWeight {
     float:right;
     text-align: left;
-    width: 100px;
+	margin-bottom: 0px;
+	margin-top: 10px;
+    width: 180px;
     font-weight: bold;
-    margin-right: 200px;
-    font-size: 1.5em;
+    font-size: 1.2em;
+}
+h3.bioLocation {
+    float:left;
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+h3.bioHeight {
+    float:left;
+    text-align: left;
+    width: 180px;
+	margin-top: 10px;
+	margin-bottom: 0px;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 #bioDelAge{
 	display: none;
@@ -383,18 +429,29 @@ h3.bioAge {
 #bioDelFirst{
 	display: none;
 }
-#bioDelForm{
-	display:inline;
-	float:right;
-	margin-top: -50px;
-    font-weight: bold;
-    font-size: 1.5em;
+#bioDelID{
+	display: none;
 }
-#doBioDel{
+#biodelForm{
+    float:right;
+    text-align: left;
+    width: 180px;
+	margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+#doBiodelete{
 	display:inline;
 	margin-right: 40px;
 }
-
+#edit{
+	float:left;
+    text-align: left;
+    width: 180px;
+	margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
 
 .bio:first-child {
     margin-top: 10px;
@@ -402,4 +459,15 @@ h3.bioAge {
 
 .bio:last-child {
     margin-bottom:10px;
+}
+.bio .con{
+    display: none;
+	background-color: grey;
+	width: 70%;
+	margin-left: 15%;
+	padding: 5px;
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-right: 8%;
+	height: 170px;
 }

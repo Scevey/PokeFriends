@@ -61,11 +61,12 @@ var BioSchema = new mongoose.Schema({
 BioSchema.methods.toAPI = function(){
 	return{
 		first: this.first,
-    last: this.last,
+		last: this.last,
 		age: this.age,
 		weight: this.weight,
-    height: this.height,
+		height: this.height,
 		gender: this.gender,
+		id: this._id,
 		location: this.location
 	};
 };
@@ -80,6 +81,14 @@ BioSchema.statics.findByName = function(name, callback) {
 
     var search = {
         name: name
+    };
+
+    return BioModel.findOne(search, callback);
+};
+BioSchema.statics.findByID = function(tag, callback) {
+
+    var search = {
+        _id: tag
     };
 
     return BioModel.findOne(search, callback);

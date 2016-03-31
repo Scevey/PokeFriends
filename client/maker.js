@@ -65,4 +65,7 @@ $(document).ready(function() {
         
         return false;
     });
+	$('.bio').click(function() {
+        $(this).find('.con').slideToggle();
+    });
 });

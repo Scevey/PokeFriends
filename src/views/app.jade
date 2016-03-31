@@ -26,20 +26,25 @@ block body
           else
               each val in bios
                   div.bio
-                      img(class="domoFace", src="/assets/img/domoface.jpeg", alt="domo face")
-                      h3.bioFirst First: #{val.first}
-                      h3.bioLast Last: #{val.last}
-                      h3.bioAge Age: #{val.age}
-                      h3.bioHeight Height: #{val.height}
-                      h3.bioWeight Weight: #{val.weight}
-                      h3.bioGender Gender: #{val.gender}
-                      h3.bioLocation Location: #{val.location}
-                      form#bioDelForm( name ="biodelForm" action = "/deleter" method="POST")
-                        input#bioDelFirst(type="text", name="delFirst", value="#{val.first}")
-                        input#bioDelLast(type="text", name="delLast", value="#{val.last}")
-                        input#bioDelAge(type="text", name="delAge", value="#{val.age}")
-                        input(type="hidden",name="_csrf",value="#{csrfToken}")
-                        a#doBioDelete(class="makeDomoSubmit", href="#") Delete
+                      img(class="pikaFace", src="/assets/img/pika.png", alt="pikachu")
+                      div.header
+                            h3.bioFirst First: #{val.first}
+                            h3.bioNumber #1
+                            h3.bioLast Last: #{val.last}
+                      div.con
+                            h3.bioHeight Height: #{val.height} cm
+                            h3.bioWeight Weight: #{val.weight} kg    
+                            h3.bioAge Age: #{val.age} years
+                            h3.bioGender Gender: #{val.gender}
+                            h3.bioLocation Region: #{val.location}
+                            form#bioDelForm( name ="biodelForm" action = "/deleter" method="POST")
+                              input#bioDelFirst(type="text", name="delFirst", value="#{val.first}")
+                              input#bioDelLast(type="text", name="delLast", value="#{val.last}")
+                              input#bioDelAge(type="text", name="delAge", value="#{val.age}")
+                              input#bioDelID(type="text", name="delID", value="#{val._id}")
+                              input(type="hidden",name="_csrf",value="#{csrfToken}")
+                              a#doBioDelete(class="makeDomoSubmit", href="#") Delete
+                            a#edit(href="#") Edit
   section#digMessage
     img#speech(src="/assets/img/speech.png", alt="speech box")
     h3
@@ -47,3 +52,5 @@ block body
     img#dig(src="assets/img/dig.gif", alt="diglett")
 block scripts
         script(src="/assets/maker.js")
+        
+        
