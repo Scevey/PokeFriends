@@ -8,6 +8,7 @@ $(document).ready(function() {
     }
     
     function sendAjax(action, data) {
+		console.log(action);
         $.ajax({
             cache: false,
             type: "POST",
@@ -29,7 +30,7 @@ $(document).ready(function() {
     
     $("#makeBioSubmit").on("click", function(e) {
         e.preventDefault();
-        $("#domoMessage").animate({width:'hide'},350);
+        $("#digMessage").animate({width:'hide'},350);
     
         if($("#first").val() == '' || $("#last").val() == ''|| $("#age").val() == '') {
             handleError("First, Last and Age are required");
@@ -40,19 +41,32 @@ $(document).ready(function() {
         
         return false;
     });
-   $("#makeBioSubmit").on("click", function(e) {
+   $("#makeEditSubmit").on("click", function(e) {
         e.preventDefault();
-        $("#domoMessage").animate({width:'hide'},350);
+        $("#digMessage").animate({width:'hide'},350);
     
-        if($("#userName").val() == '') {
-            handleError("username required to search");
+        if($("#firstEdit").val() == '' || $("#lastEdit").val() == ''|| $("#ageEdit").val() == '' || $("#heightEdit").val() == '' || $("#weightEdit").val() == ''|| $("#genderEdit").val() == '' || $("#locationEdit").val() == '') {
+            handleError("Please fill all fields to confirm new Data is accurate");
             return false;
         }
 
-        sendAjax($("#bioForm").attr("action"), $("#bioForm").serialize());
+        sendAjax($("#editForm").attr("action"), $("#editForm").serialize());
         
         return false;
     });
+  //  $("#edit").on("click", function(e) {
+    //    e.preventDefault();
+      //  $("#digMessage").animate({width:'hide'},350);
+    //
+        //if($("#bioEditID").val() == '') {
+          //  handleError("an error occurred");
+           // return false;
+      //  }
+		//console.log($("#bioEditForm").attr("action"));
+//        sendAjax($("#bioEditForm").attr("action"), $("#bioEditForm").serialize());
+        
+  //      return false;
+    //});
 	 $("#doBioDelete").on("click", function(e) {
 		e.preventDefault();
 		$("#digMessage").animate({width:'hide'},350);

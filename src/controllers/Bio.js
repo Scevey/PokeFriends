@@ -3,6 +3,7 @@ var models = require('../models');
 
 var Bio = models.Bio;
 var mainPage = function(req,res){
+
 	Bio.BioModel.findByOwner(req.session.account._id, function(err, docs){
 		if(err){
 			console.log(err);
@@ -13,6 +14,19 @@ var mainPage = function(req,res){
 };
 var acctPage = function(req,res){
 		res.render('acct',{csrfToken: req.csrfToken()});
+};
+var manualPage = function(req,res){
+		res.render('manual',{csrfToken: req.csrfToken()});
+};
+var editPage = function(req,res){
+    var pokeID = req.params.id;
+	Bio.BioModel.findByID(pokeID, function(err, doc){
+		if(err){
+			console.log(err);
+			return res.status(400).json({error: 'An error occured'});
+		}
+		res.render('edit',{csrfToken: req.csrfToken(), bios:doc});
+	});
 };
 var makeBio= function(req,res){
   var defHeight = 0;
@@ -72,7 +86,7 @@ var deleteBio = function(req,res){
         
         //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
         if(!doc) {
-            return res.json({error: "No Domos found"});
+            return res.json({error: "No Bios found"});
         }
 		doc.remove(function(err) {
 			if(err) {
@@ -80,12 +94,44 @@ var deleteBio = function(req,res){
 			}
         
         //return success
-			res.json({redirect: '/maker'});
+			res.json({redirect: '/main'});
 		});
+
+    });
+};	
+var editBio = function(req,res){
+    Bio.BioModel.findByID(req.body.IDEdit, function(err, doc) {
+        //errs, handle them
+        if(err) {
+            return res.json({err:err}); //if error, return it            
+        }
+        
+        //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
+        if(!doc) {
+            return res.json({error: "No Domos found"});
+        }
+        doc.first = req.body.firstEdit;
+        doc.last = req.body.lastEdit;
+        doc.age = req.body.ageEdit;
+        doc.height = req.body.heightEdit;
+        doc.weight = req.body.weightEdit;
+        doc.gender = req.body.genderEdit;
+        doc.location = req.body.locationEdit;        
+        doc.save(function(err) {
+        if(err) {
+          return res.json({err:err}); //if error, return it
+        }
+          
+          //return success
+        res.json({redirect: '/main'});
+      });
 
     });
 };	
 module.exports.mainPage = mainPage;
 module.exports.acctPage = acctPage;
+module.exports.editPage = editPage;
+module.exports.manualPage = manualPage;
 module.exports.make = makeBio;
+module.exports.edit = editBio;
 module.exports.del = deleteBio;

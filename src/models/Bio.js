@@ -83,7 +83,7 @@ BioSchema.statics.findByName = function(name, callback) {
         name: name
     };
 
-    return BioModel.findOne(search, callback);
+    return BioModel.findOne(search).select("first last age weight height gender location").exec(callback);
 };
 BioSchema.statics.findByID = function(tag, callback) {
 
