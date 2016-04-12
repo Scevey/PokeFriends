@@ -28,6 +28,8 @@ block body
       input#gender(type="text", name="gender", placeholder="Male/Female/etc.")
       label(for="region") Region: 
       input#region(type="text", name="location", placeholder="State/City(ex. New York).")
+      label(for="image") Image Link: 
+      input#region(type="text", name="image", placeholder=" your hosted image address")
       input(type="hidden",name="_csrf",value="#{csrfToken}")
       a#makeBioSubmit(class="formSubmit", href="#") Create Bio     
   #digMessage

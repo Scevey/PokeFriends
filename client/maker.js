@@ -46,7 +46,7 @@ $(document).ready(function() {
         $("#digMessage").animate({width:'hide'},350);
     
         if($("#firstEdit").val() == '' || $("#lastEdit").val() == ''|| $("#ageEdit").val() == '' || $("#heightEdit").val() == '' || $("#weightEdit").val() == ''|| $("#genderEdit").val() == '' || $("#locationEdit").val() == '') {
-            handleError("Please fill all fields to confirm new Data is accurate");
+            handleError("Fill all fields to confirm new Data is accurate");
             return false;
         }
 
@@ -54,19 +54,7 @@ $(document).ready(function() {
         
         return false;
     });
-  //  $("#edit").on("click", function(e) {
-    //    e.preventDefault();
-      //  $("#digMessage").animate({width:'hide'},350);
-    //
-        //if($("#bioEditID").val() == '') {
-          //  handleError("an error occurred");
-           // return false;
-      //  }
-		//console.log($("#bioEditForm").attr("action"));
-//        sendAjax($("#bioEditForm").attr("action"), $("#bioEditForm").serialize());
-        
-  //      return false;
-    //});
+
 	 $("#doBioDelete").on("click", function(e) {
 		e.preventDefault();
 		$("#digMessage").animate({width:'hide'},350);

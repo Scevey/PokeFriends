@@ -60,9 +60,14 @@ nav:nth-child(1) {
     background-color: #F06560;
 }
 div.search{
-	width: 30%;
-	padding-left: 7%;
-	padding-top: 2%;
+	width: 35%;
+	border: 2px solid rgb(0,0,0);
+	background-color: rgb(229,68,71);
+	margin-top: 3%;
+	margin-left: 6%;
+	padding-left: 1%;
+	padding-bottom: 1%;
+	padding-top: 1%;
 	float: left;
 }
 div.collection{
@@ -70,32 +75,37 @@ div.collection{
 	min-width: 700px;
 	width: 700px;
 	margin-top: 2%;
-	padding-right: 4%;
+	padding-right: 3%;
 }
 .bioForm {
-    border: 2px solid #338acc;
+    border: 2px solid rgb(64,64,64);
+	border-radius: 5px;
     height: 35px;
     width: 390px;
     margin-top:2%;
 	padding-left: 2%;
-	margin-left: 2%;
+	margin-left: 4%;
     padding-top:10px;
-    background-color: #55acee;
+    background-color: #e0ccb1;
     border-bottom-right-radius: 4px;
     border-top-right-radius: 4px;
 }
 #searchResult{
-	width: 400px;
-	height: 45%;
-	margin-left: 2%;
-	background-color:blue;
-}
-#statistics{
-	margin-left: 2%;
-	margin-top: 3%;
+    border: 2px solid rgb(64,64,64);
+	border-radius: 5px;
 	width: 400px;
 	height: 25%;
-	background-color:blue;
+	margin-left: 4%;
+	background-color:#e0ccb1;
+}
+#statistics{
+    border: 2px solid rgb(64,64,64);
+	border-radius: 5px;
+	margin-left: 4%;
+	margin-top: 3%;
+	width: 400px;
+	height: 20%;
+	background-color:#e0ccb1;
 }
 .bioForm label {
     display: inline-block;
@@ -124,14 +134,30 @@ div.collection{
     margin-left: 45px;
     padding: 5px;
 }
-
-.makeDomoSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
+.makeSearchSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
     color: white;
 }
-
+.searchBioSubmit {
+    transition: background-color 0.4s ease;
+    display: inline;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 90px;
+    background-color:  #ee1515;
+    border-radius: 2px;
+    padding: 3px 0px;
+    color: black;
+    text-decoration: none;
+    margin-left: 45px;
+    padding: 5px;
+}
 .makeBioSubmit:hover {
     transition: background-color 0.4s ease;
     background-color: #338acc;
+}
+.searchBioSubmit:hover {
+    transition: background-color 0.8s ease;
+    background-color: #F06560;
 }
 
 .mainForm {
@@ -143,6 +169,24 @@ div.collection{
 }
 .mainForm input {
     width: 250px;
+}
+.editForm {
+    height: 300px;
+    width: 600px;
+    padding-top: 20px;
+    font-size: 1.2em;
+    margin: 0 auto;
+}
+.editForm input {
+    width: 250px;
+}
+.editForm label {
+    display: inline-block;
+    width: 200px;
+	padding-top: 10px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 1.2em;
 }
 .signForm {
     height: 400px;
@@ -196,6 +240,22 @@ h3.accountmsg {
       -1px 1px 0 #000,
        1px 1px 0 #000;
 }
+h3.collection{
+	font-size: 2em;
+	font-family: 'pokemon_solidnormal';
+    text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-text-stroke: 1px #ee1515;
+	letter-spacing: 0.15em;
+	color: rgb(254,203,5);
+	text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
 .mainForm label {
     display: inline-block;
     width: 100px;
@@ -206,12 +266,13 @@ h3.accountmsg {
 }
 div.main{
 	padding-top: 2%;
+	margin-top: 2%;
 	width: 76%;
 	min-width: 1400px;
 	height: 80%;
 	margin-left: 12%;
 	margin-right:12%;
-	background-color:yellow;
+	background-color:  rgb(229,68,71);
 }
 div.content{
 	width: 90%;
@@ -219,8 +280,9 @@ div.content{
 	min-width: 1200px;
 	margin-bottom: 3%;
 	margin-left:5%;
+	
 	margin-right:5%;
-	background-color:green;
+	background-color:rgb(119,128,116);
 }
 p.info{
 	font-weight: bold;
@@ -308,7 +370,8 @@ p.info{
     width: 80%;
 	max-height:90%;
     min-width: 400px;
-    border: 2px solid #55acee;
+    border: 2px solid rgb(0,0,0);
+	background-color: rgb(229,68,71);
     border-radius: 4px;
     margin-right: 10%;
 	margin-left: 10%;
@@ -321,10 +384,12 @@ p.info{
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #55acee;
+	margin-left: 10px;
+	margin-right: 100px;
+    margin-bottom: 4px;
+    border: 4px solid rgb(64,64,64);
     border-radius: 4px;
-    background-color: #55acee;
+    background-color: #e0ccb1;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
@@ -334,7 +399,7 @@ p.info{
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
+    background-color:#ffcccc;
 }
 
 img.pikaFace {
@@ -420,6 +485,10 @@ h3.bioHeight {
     font-weight: bold;
     font-size: 1.2em;
 }
+h3.descriptor{
+	text-align: center;
+	font-family: 'pokemon_solidnormal';
+}
 #bioDelAge{
 	display: none;
 }
@@ -430,6 +499,12 @@ h3.bioHeight {
 	display: none;
 }
 #bioDelID{
+	display: none;
+}
+#bioEditID{
+	display: none;
+}
+#IDEdit{
 	display: none;
 }
 #biodelForm{
@@ -452,7 +527,11 @@ h3.bioHeight {
     font-weight: bold;
     font-size: 1.2em;
 }
-
+#manualAdd{
+	margin-left: 30%;
+	width: 135px;
+	display: block;
+}
 .bio:first-child {
     margin-top: 10px;
 }
@@ -462,7 +541,8 @@ h3.bioHeight {
 }
 .bio .con{
     display: none;
-	background-color: grey;
+	background-color: rgb(119,128,116);
+	border-radius: 15px;
 	width: 70%;
 	margin-left: 15%;
 	padding: 5px;

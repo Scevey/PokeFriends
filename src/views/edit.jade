@@ -8,38 +8,34 @@ block body
     .navlink
       a(href="/logout") Log out
   section#title
-    h3.editmsg Edit This Bio!
+    h3.accountmsg Edit This Bio!
     p.info The original data is displayed inside each text field, edit them and submit to change this Bio.
   section#editMaker
-    if !bios || bios.length == 0
-        div.bio
-            h3.emptyBio No Entries Yet
-    else
-         each val in bios
-            div.bio
-                form#editForm(class="signForm", name="editForm", action="/edit", method="POST")
-                  label(for="first") First Name: 
-                  input#firstEdit(type="text", name="firstEdit", placeholder="#{val.first}")
-                  label(for="last") Last Name: 
-                  input#lastEdit(type="text", name="lastEdit", placeholder="#{val.last}") 
-                  label(for="age") Age in years: 
-                  input#ageEdit(type="text", name="ageEdit", placeholder="#{val.age}")
-                  label(for="height") Height in cm:
-                  input#heightEdit(type="text", name="heightEdit", placeholder="#{val.height}")
-                  label(for="weight") Weight in kg: 
-                  input#weightEdit(type="text", name="weightEdit", placeholder="#{val.weight}")
-                  label(for="gender") Gender: 
-                  input#genderEdit(type="text", name="genderEdit", placeholder="#{val.gender}")
-                  label(for="region") Region: 
-                  input#locationEdit(type="text", name="locationEdit", placeholder="#{val.location}")
-                  input#IDEdit(type="text", name="IDEdit", value="#{val._id}")
-                  input(type="hidden",name="_csrf",value="#{csrfToken}")
-                  a#makeEditSubmit(class="formSubmit", href="#") Submit Edit     
+    form#editForm(class="editForm", name="editForm", action="/edit", method="POST")
+      label(for="first") First Name: 
+      input#firstEdit(type="text", name="firstEdit", placeholder="#{bios.first}")
+      label(for="last") Last Name: 
+      input#lastEdit(type="text", name="lastEdit", placeholder="#{bios.last}") 
+      label(for="age") Age in years: 
+      input#ageEdit(type="text", name="ageEdit", placeholder="#{bios.age}")
+      label(for="height") Height in cm:
+      input#heightEdit(type="text", name="heightEdit", placeholder="#{bios.height}")
+      label(for="weight") Weight in kg: 
+      input#weightEdit(type="text", name="weightEdit", placeholder="#{bios.weight}")
+      label(for="gender") Gender: 
+      input#genderEdit(type="text", name="genderEdit", placeholder="#{bios.gender}")
+      label(for="region") Region: 
+      input#locationEdit(type="text", name="locationEdit", placeholder="#{bios.location}")
+      label(for="image") Image Link:  
+      input#imageEdit(type="text", name="imageEdit", placeholder="#{bios.image}")
+      input#IDEdit(type="text", name="IDEdit", value="#{bios._id}")
+      input(type="hidden",name="_csrf",value="#{csrfToken}")
+      a#makeEditSubmit(class="formSubmit", href="#") Submit Edit     
   section#digMessage
     img#speech(src="/assets/img/speech.png", alt="speech box")
     h3
       span#errorMessage
-    img#dig(src="assets/img/dig.gif", alt="diglett")
+    img#dig(src="/assets/img/dig.gif", alt="diglett")
 block scripts
         script(src="/assets/maker.js")
         

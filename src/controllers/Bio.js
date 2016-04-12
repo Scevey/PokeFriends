@@ -33,6 +33,7 @@ var makeBio= function(req,res){
   var defWeight = 0;
   var defGender = "NA";
   var defLocation = "Earth";
+  var defImage = "/assets/img/pika.png";
 	if(!req.body.first|| !req.body.last|| !req.body.age){
 		return res.status(400).json({error: "First, last, and age are required"});
 	}
@@ -48,6 +49,9 @@ var makeBio= function(req,res){
   if(req.body.location){
     defLocation = req.body.location;
   }
+  if(req.body.image){
+    defImage = req.body.image;
+  }
 	var bioData = {
 		first: req.body.first,
 		last: req.body.last,
@@ -56,6 +60,7 @@ var makeBio= function(req,res){
 		weight: defWeight,
 		gender: defGender,
 		location: defLocation,
+    image: defImage,
 		owner: req.session.account._id
 	};
 	
@@ -116,6 +121,7 @@ var editBio = function(req,res){
         doc.height = req.body.heightEdit;
         doc.weight = req.body.weightEdit;
         doc.gender = req.body.genderEdit;
+        doc.image = req.body.imageEdit;
         doc.location = req.body.locationEdit;        
         doc.save(function(err) {
         if(err) {
