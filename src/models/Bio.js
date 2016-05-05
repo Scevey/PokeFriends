@@ -14,7 +14,7 @@ var BioSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		trim: true,
-		set: setName
+
 	}, 
  	last: {
 		type: String,
@@ -51,11 +51,20 @@ var BioSchema = new mongoose.Schema({
 		type:String,
 		trim: true,
 	},
+    number:{
+      type: Number,
+      min: 0,
+      required: true
+    },
 	owner:{
 		type: mongoose.Schema.ObjectId,
 		required: true,
 		ref: 'Account'
 	},
+  isLinked:{
+    type: Boolean
+    //set: setBool
+  },
 	createdData:{
 		type:Date,
 		default: Date.now
@@ -70,7 +79,9 @@ BioSchema.methods.toAPI = function(){
 		weight: this.weight,
 		height: this.height,
 		gender: this.gender,
-    image: this.image,
+		image: this.image,
+		number: this.number,
+    isLinked: this.isLinked,
 		id: this._id,
 		location: this.location
 	};
@@ -80,7 +91,7 @@ BioSchema.statics.findByOwner = function(ownerId, callback){
 	var search = {
 		owner: mongoose.Types.ObjectId(ownerId),
 	};
-	return BioModel.find(search).select("first last age weight height gender image location").exec(callback);
+	return BioModel.find(search).select("first last age weight height gender image number isLinked location").exec(callback);
 };
 BioSchema.statics.findByName = function(name, callback) {
 
@@ -88,7 +99,7 @@ BioSchema.statics.findByName = function(name, callback) {
         name: name
     };
 
-    return BioModel.findOne(search).select("first last age weight height gender image location").exec(callback);
+    return BioModel.findOne(search).select("first last age weight height gender image number location").exec(callback);
 };
 BioSchema.statics.findByID = function(tag, callback) {
 

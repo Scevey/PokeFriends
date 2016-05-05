@@ -311,7 +311,7 @@ p.info{
     background-color: #F06560;
 }
 
-#user, #pass, #pass2 ,#height,#weight,#gender,#age,#region,#first,#last{
+#user, #pass, #pass2 ,#height,#weight,#gender,#age,#region,#first,#last,#number{
     text-align: center;
     font-size: 1.1em;
     width: 280px;
@@ -501,7 +501,7 @@ h3.descriptor{
 #bioDelID{
 	display: none;
 }
-#bioEditID{
+#bioEditID, #numberHid, #isLinked{
 	display: none;
 }
 #IDEdit{

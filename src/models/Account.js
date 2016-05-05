@@ -24,7 +24,14 @@ var AccountSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    
+    numberOwned:{
+        type: Number,
+        default: 1
+    },
+    userDex:{
+		type: mongoose.Schema.ObjectId,
+		ref: 'Bio',
+    },
     createdData: {
         type: Date,
         default: Date.now
@@ -36,6 +43,8 @@ AccountSchema.methods.toAPI = function() {
     //_id is built into your mongo document and is guaranteed to be unique
     return {
         username: this.username,
+        numberOwned: this.numberOwned,
+        userDex: this.userDex,
         _id: this._id 
     };
 };
@@ -67,7 +76,14 @@ AccountSchema.statics.generateHash = function(password, callback) {
 		return callback(salt, hash.toString('hex'));
 	});
 };
+AccountSchema.statics.findByID = function(tag, callback) {
 
+    var search = {
+        _id: tag
+    };
+
+    return AccountModel.findOne(search, callback);
+};
 AccountSchema.statics.authenticate = function(username, password, callback) {
 	return AccountModel.findByUsername(username, function(err, doc) {
 

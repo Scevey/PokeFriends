@@ -41,6 +41,19 @@ $(document).ready(function() {
         
         return false;
     });
+    $("#makeSearchSubmit").on("click", function(e) {
+        e.preventDefault();
+        $("#digMessage").animate({width:'hide'},350);
+    
+        if($("#Username").val() == '') {
+            handleError("Username required");
+            return false;
+        }
+
+        sendAjax($("#searchForm").attr("action"), $("#searchForm").serialize());
+        
+        return false;
+    });
    $("#makeEditSubmit").on("click", function(e) {
         e.preventDefault();
         $("#digMessage").animate({width:'hide'},350);

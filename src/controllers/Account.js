@@ -22,6 +22,7 @@ var login = function(req,res){
 		if(err|| !account){
 			return res.status(400).json({error: "Wrong username or password"});
 		}
+   // console.log(req.body.userDex);
 		req.session.account = account.toAPI();
 		res.json({redirect: '/main'});
 	});
@@ -37,6 +38,7 @@ var signup = function(req,res){
 		var accountData = {
 			username: req.body.username,
 			salt: salt,
+      numberOwned: 1,
 			password: hash
 		};
 		var newAccount = Account.AccountModel(accountData);

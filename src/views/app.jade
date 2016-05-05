@@ -10,14 +10,13 @@ block body
   div.main 
     div.content
       div.search
-        h3.collection Search For Friends
+        h3.collection Find A Friends Bio
         section#searchBar
-        form#bioForm(class="bioForm", name="bioForm", action="/maker", method="POST")
-          label(for="name") Name: 
-          input#userName(type="text", name="name", placeholder="User name")
+        form#searchForm(class="bioForm", name="searchForm", action="/main", method="POST")
+          label(for="name") Search: 
+          input#userName(type="text", name="name", placeholder="Friends Username")
           input(type="hidden",name="_csrf",value="#{csrfToken}")
           a#makeSearchSubmit(class="searchBioSubmit", href="#") Find
-        section#searchResult
         h3.collection Custom Entry
         section#statistics
           h3.descriptor Add whatever you want to your Dex!
@@ -34,7 +33,7 @@ block body
                       img(class="pikaFace", src="#{val.image}", alt="pikachu")
                       div.header
                             h3.bioFirst First: #{val.first}
-                            h3.bioNumber #1
+                            h3.bioNumber # #{val.number}
                             h3.bioLast Last: #{val.last}
                       div.con
                             h3.bioHeight Height: #{val.height} cm

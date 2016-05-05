@@ -1,6 +1,7 @@
 var _ = require('underscore');
 var models = require('../models');
 
+var Account = models.Account;
 var Bio = models.Bio;
 var mainPage = function(req,res){
 
@@ -9,6 +10,13 @@ var mainPage = function(req,res){
 			console.log(err);
 			return res.status(400).json({error: 'An error occured'});
 		}
+    var tempSort = [];
+    for (i = 0; i < docs.length; i++) { 
+        tempSort[i] = docs[i];
+    } 
+ 
+    tempSort.sort(function(a, b){return a.number-b.number});
+    docs = tempSort;
 		res.render('app',{csrfToken: req.csrfToken(), bios:docs});
 	});
 };
@@ -31,6 +39,8 @@ var editPage = function(req,res){
 var makeBio= function(req,res){
   var defHeight = 0;
   var defWeight = 0;
+  var defNum = req.session.account.numberOwned;
+  var defLinked = false;
   var defGender = "NA";
   var defLocation = "Earth";
   var defImage = "/assets/img/pika.png";
@@ -52,6 +62,12 @@ var makeBio= function(req,res){
   if(req.body.image){
     defImage = req.body.image;
   }
+  if(req.body.number){
+    defNum = req.body.number;
+  }
+  if(req.body.isLinked){
+    defLinked = req.body.isLinked;
+  }
 	var bioData = {
 		first: req.body.first,
 		last: req.body.last,
@@ -60,19 +76,45 @@ var makeBio= function(req,res){
 		weight: defWeight,
 		gender: defGender,
 		location: defLocation,
-    image: defImage,
+		image: defImage,
+		number: req.session.account.numberOwned,
+		isLinked: defLinked,
 		owner: req.session.account._id
 	};
-	
 	var newBio = new Bio.BioModel(bioData);
-	
 	newBio.save(function(err){
 		if(err){
 			console.log(err);
 			return res.status(400).json({error: "An error occurred"});
 		}
-		res.json({redirect: '/main'});
+	
+		Account.AccountModel.findByID(req.session.account._id, function(err, doc) {
+        //errs, handle them
+        if(err) {
+            return res.json({err:err}); //if error, return it            
+        }
+        //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
+        if(!doc) {
+            return res.json({error: "No Bios found"});
+        }
+        if(newBio.isLinked === true){
+            doc.userDex = newBio._id;
+        }    
+        var numO = doc.numberOwned + 1;
+        doc.numberOwned = numO;
+		doc.save(function(err) {
+			if(err) {
+				return res.json({err:err}); //if error, return it
+			}
+				req.session.account = doc.toAPI();
+				res.json({redirect: '/main'});
+				});
+
+			});
 	});
+
+	
+
 };
 var deleteBio = function(req,res){
 	var  bioData = {
@@ -122,6 +164,7 @@ var editBio = function(req,res){
         doc.weight = req.body.weightEdit;
         doc.gender = req.body.genderEdit;
         doc.image = req.body.imageEdit;
+        doc.number = req.body.numberEdit;
         doc.location = req.body.locationEdit;        
         doc.save(function(err) {
         if(err) {
@@ -134,10 +177,71 @@ var editBio = function(req,res){
 
     });
 };	
+var searchBio= function(req,res){
+	if(!req.body.name){
+		return res.status(400).json({error: "user name required"});
+	}
+  		Account.AccountModel.findByUsername(req.body.name, function(err, acct) {
+        //errs, handle them
+        if(err) {
+           handleError("username not valid");
+           res.json({redirect: '/main'});        
+        }
+        //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
+        if(!acct) {
+            return res.json({error: "No Bios found"});
+        }
+        var userBioID = acct.userDex;
+        var newNum = acct.numberOwned + 1;
+        acct.numberOwned = newNum;
+        acct.save(function(err) {
+        if(err) {
+          return res.json({err:err}); //if error, return it
+        }
+          Bio.BioModel.findByID(userBioID, function(err, bio) {
+          //errs, handle them
+            if(err) {
+                return res.json({err:err}); //if error, return it            
+            }
+            
+            //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
+            if(!bio) {
+                return res.json({error: "No Bios found"});
+            }
+            var bioData = {
+              first: bio.first,
+              last: bio.last,
+              age: bio.age,
+              height: bio.height,
+              weight: bio.weight,
+              gender: bio.gender,
+              location: bio.location,
+              image: bio.image,
+              number: req.session.account.numberOwned,
+              isLinked: false,
+              owner: req.session.account._id
+            };
+            
+          var newBio = new Bio.BioModel(bioData);
+          newBio.save(function(err){
+            if(err){
+              console.log(err);
+              return res.status(400).json({error: "An error occurred"});
+            }
+          res.json({redirect: '/main'});
+        });
+      });   
+    });
+  });
+};
+
+
+
 module.exports.mainPage = mainPage;
 module.exports.acctPage = acctPage;
 module.exports.editPage = editPage;
 module.exports.manualPage = manualPage;
 module.exports.make = makeBio;
+module.exports.search = searchBio;
 module.exports.edit = editBio;
 module.exports.del = deleteBio;
