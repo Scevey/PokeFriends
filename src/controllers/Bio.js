@@ -3,6 +3,8 @@ var models = require('../models');
 
 var Account = models.Account;
 var Bio = models.Bio;
+
+//find and send bios for logged in user
 var mainPage = function(req,res){
 
 	Bio.BioModel.findByOwner(req.session.account._id, function(err, docs){
@@ -20,6 +22,7 @@ var mainPage = function(req,res){
 		res.render('app',{csrfToken: req.csrfToken(), bios:docs});
 	});
 };
+//redirects
 var acctPage = function(req,res){
 		res.render('acct',{csrfToken: req.csrfToken()});
 };
@@ -36,6 +39,7 @@ var editPage = function(req,res){
 		res.render('edit',{csrfToken: req.csrfToken(), bios:doc});
 	});
 };
+//make a new bio or custom
 var makeBio= function(req,res){
   var defHeight = 0;
   var defWeight = 0;
@@ -112,10 +116,9 @@ var makeBio= function(req,res){
 
 			});
 	});
-
-	
-
 };
+
+//delete a bio
 var deleteBio = function(req,res){
 	var  bioData = {
 		first: req.body.delFirst,
@@ -146,6 +149,7 @@ var deleteBio = function(req,res){
 
     });
 };	
+//adapt a bios data
 var editBio = function(req,res){
     Bio.BioModel.findByID(req.body.IDEdit, function(err, doc) {
         //errs, handle them
@@ -177,6 +181,7 @@ var editBio = function(req,res){
 
     });
 };	
+//find a users linked bio and add it
 var searchBio= function(req,res){
 	if(!req.body.name){
 		return res.status(400).json({error: "user name required"});
@@ -192,21 +197,16 @@ var searchBio= function(req,res){
             return res.json({error: "No Bios found"});
         }
         var userBioID = acct.userDex;
-        var newNum = acct.numberOwned + 1;
-        acct.numberOwned = newNum;
-        acct.save(function(err) {
-        if(err) {
-          return res.json({err:err}); //if error, return it
-        }
+
           Bio.BioModel.findByID(userBioID, function(err, bio) {
           //errs, handle them
             if(err) {
-                return res.json({err:err}); //if error, return it            
+                    res.json({redirect: '/main'});             
             }
             
             //if no matches, let them know (does not necessarily have to be an error since technically it worked correctly)
             if(!bio) {
-                return res.json({error: "No Bios found"});
+                    res.json({redirect: '/main'});   
             }
             var bioData = {
               first: bio.first,
@@ -228,8 +228,20 @@ var searchBio= function(req,res){
               console.log(err);
               return res.status(400).json({error: "An error occurred"});
             }
+			Account.AccountModel.findByID(req.session.account._id, function(err, user) {
+				if(err) {
+                    res.json({redirect: '/main'});             
+				}
+			var newNum = user.numberOwned + 1;
+			user.numberOwned = newNum;
+			user.save(function(err) {
+			if(err) {
+			return res.json({err:err}); //if error, return it
+			}
+		  req.session.account = user.toAPI();
           res.json({redirect: '/main'});
         });
+		});
       });   
     });
   });

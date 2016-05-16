@@ -6,9 +6,7 @@ var _ = require('underscore');
 
 var BioModel;
 
-var setName = function(name){
-	return _.escape(name).trim();
-};
+//all the things a bio needs
 var BioSchema = new mongoose.Schema({
 	first: {
 		type: String,
@@ -30,17 +28,14 @@ var BioSchema = new mongoose.Schema({
 	height:{
 		type:Number,
 		min: 0
-		//required: true
 	},
   weight:{
 		type:Number,
 		min: 0
-		//required: true
 	},
   gender:{
 		type:String,
 		trim: true,
-		//required: true
 	},
    location:{
 		type:String,
@@ -63,7 +58,6 @@ var BioSchema = new mongoose.Schema({
 	},
   isLinked:{
     type: Boolean
-    //set: setBool
   },
 	createdData:{
 		type:Date,
@@ -71,6 +65,7 @@ var BioSchema = new mongoose.Schema({
 	}
 });
 
+//makes bio data accessible
 BioSchema.methods.toAPI = function(){
 	return{
 		first: this.first,
@@ -87,12 +82,14 @@ BioSchema.methods.toAPI = function(){
 	};
 };
 
+//find a bio by its owners username
 BioSchema.statics.findByOwner = function(ownerId, callback){
 	var search = {
 		owner: mongoose.Types.ObjectId(ownerId),
 	};
 	return BioModel.find(search).select("first last age weight height gender image number isLinked location").exec(callback);
 };
+//find a bio by its name
 BioSchema.statics.findByName = function(name, callback) {
 
     var search = {
@@ -101,6 +98,7 @@ BioSchema.statics.findByName = function(name, callback) {
 
     return BioModel.findOne(search).select("first last age weight height gender image number location").exec(callback);
 };
+//find a bio by its id
 BioSchema.statics.findByID = function(tag, callback) {
 
     var search = {

@@ -1,7 +1,7 @@
 var models = require('../models');
 
 var Account = models.Account;
-
+//redirect functions
 var loginPage = function(req,res){
 	
 	res.render('login',{ csrfToken: req.csrfToken()});
@@ -14,6 +14,8 @@ var logout = function(req,res){
 	req.session.destroy();
 	res.redirect('/');
 };
+
+//login user, check name and pw
 var login = function(req,res){
 	if(!req.body.username || !req.body.pass){
 		return res.status(400).json({error: "All fields are required"});
@@ -22,11 +24,11 @@ var login = function(req,res){
 		if(err|| !account){
 			return res.status(400).json({error: "Wrong username or password"});
 		}
-   // console.log(req.body.userDex);
 		req.session.account = account.toAPI();
 		res.json({redirect: '/main'});
 	});
 };
+//make new user, new name and pw
 var signup = function(req,res){
 	if(!req.body.username || !req.body.pass || !req.body.pass2){
 		return res.status(400).json({error: "Passwords do not match!"});
