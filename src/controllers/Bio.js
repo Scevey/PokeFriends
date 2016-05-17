@@ -17,7 +17,7 @@ var mainPage = function(req,res){
         tempSort[i] = docs[i];
     } 
  
-    tempSort.sort(function(a, b){return a.number-b.number});
+    tempSort.sort(function(a, b){return a.number-b.number;});
     docs = tempSort;
 		res.render('app',{csrfToken: req.csrfToken(), bios:docs});
 	});
