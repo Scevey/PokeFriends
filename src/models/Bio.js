@@ -18,7 +18,6 @@ var BioSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		trim: true,
-		set: setName
 	}, 
 	age: {
 		type: Number,

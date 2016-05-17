@@ -68,6 +68,7 @@ div.search{
 	padding-left: 1%;
 	padding-bottom: 1%;
 	padding-top: 1%;
+	border-radius: 4px;
 	float: left;
 }
 div.collection{
@@ -134,8 +135,8 @@ div.collection{
     margin-left: 45px;
     padding: 5px;
 }
-.makeSearchSubmit:link, .makeDomoSubmit:visited, .makeDomoSubmit:hover, .makeDomoSubmit:active {
-    color: white;
+.makeSearchSubmit:link, .makeSearchSubmit:visited, .makeSearchSubmit:hover, .makeSearchSubmit:active {
+ 	color: rgb(254,203,5);
 }
 .searchBioSubmit {
     transition: background-color 0.4s ease;
@@ -240,6 +241,16 @@ h3.accountmsg {
       -1px 1px 0 #000,
        1px 1px 0 #000;
 }
+h3.descriptor{
+	font-size: 1.2em;
+	font-family: 'pokemon_solidnormal';
+	color: rgb(254,203,5);
+	-webkit-text-stroke: 1px grey;	
+	letter-spacing: 0.15em;
+    text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 h3.collection{
 	font-size: 2em;
 	font-family: 'pokemon_solidnormal';
@@ -272,6 +283,7 @@ div.main{
 	height: 80%;
 	margin-left: 12%;
 	margin-right:12%;
+	border-radius: 50px;
 	background-color:  rgb(229,68,71);
 }
 div.content{
@@ -280,7 +292,8 @@ div.content{
 	min-width: 1200px;
 	margin-bottom: 3%;
 	margin-left:5%;
-	
+    border-radius: 15px;
+
 	margin-right:5%;
 	background-color:rgb(119,128,116);
 }
@@ -413,6 +426,10 @@ img.pikaFace {
 }
 div.header{
 	height: 70px;
+		-webkit-text-stroke: 1px grey;
+	    font-size: 1.2em;
+	letter-spacing: 0.15em;
+	color: rgb(254,203,5);
 }
 h3.emptyBio{
     width: 400px;
@@ -428,14 +445,19 @@ h3.bioFirst {
     font-weight: bold;
     padding-left: 40px;
     font-size: 1.2em;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 h3.bioNumber {
     float:right;
     text-align: left;
     width: 50px;
+	margin-top: 25px;
+	margin-bottom: 0px;
     font-weight: bold;
     padding-right: 20px;
     font-size: 1.2em;
+
 }
 h3.bioAge {
     float:left;
@@ -459,6 +481,8 @@ h3.bioLast {
     width: 150px;
     font-weight: bold;
     font-size: 1.2em;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 h3.bioWeight {
     float:right;
@@ -535,7 +559,13 @@ h3.descriptor{
 .bio:first-child {
     margin-top: 10px;
 }
-
+.bio{
+	font-size: .8em;
+	font-family: 'pokemon_solidnormal';
+	color: white;	
+		
+	letter-spacing: 0.15em;
+}
 .bio:last-child {
     margin-bottom:10px;
 }
@@ -550,4 +580,6 @@ h3.descriptor{
 	padding-right: 5%;
 	margin-right: 8%;
 	height: 170px;
+
+	
 }
